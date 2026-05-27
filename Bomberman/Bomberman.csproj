@@ -1,162 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC8EF67C-129D-4BC5-BC73-F06257E8D3FF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Bomberman</RootNamespace>
-    <AssemblyName>Bomberman</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <LangVersion>8</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Content Include="Images\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Objects\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Resources\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Maps\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Sounds\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Creatures\Bonuses\PlusBomb.cs" />
-    <Compile Include="Creatures\Bonuses\PlusSplash.cs" />
-    <Compile Include="Creatures\Doors\ClosedDoor.cs" />
-    <Compile Include="Creatures\Doors\OpenDoor.cs" />
-    <Compile Include="Creatures\FinalObjects\RemoteControl.cs" />
-    <Compile Include="Creatures\FinalObjects\SpecialWall.cs" />
-    <Compile Include="Creatures\Fire\Fire.cs" />
-    <Compile Include="Creatures\ICreature.cs" />
-    <Compile Include="Creatures\ICreatureWithTimer.cs" />
-    <Compile Include="Creatures\Hints\Hint.cs" />
-    <Compile Include="Creatures\Robots\Robot.cs" />
-    <Compile Include="Creatures\Robots\RandomRobot.cs" />
-    <Compile Include="Creatures\Robots\SmartRobot.cs" />
-    <Compile Include="Creatures\Robots\PredictableRobot.cs" />
-    <Compile Include="Creatures\Robots\WideSearchRobot.cs" />
-    <Compile Include="Creatures\Obstacles\Block.cs" />
-    <Compile Include="Creatures\Obstacles\BreakableWall.cs" />
-    <Compile Include="Creatures\Obstacles\Plate.cs" />
-    <Compile Include="Creatures\Obstacles\Dynamite.cs" />
-    <Compile Include="Creatures\Obstacles\PressedPlate.cs" />
-    <Compile Include="Creatures\Obstacles\UnbreakableWall.cs" />
-    <Compile Include="Creatures\Obstacles\ForceField.cs" />
-    <Compile Include="Creatures\Player\Bomb.cs" />
-    <Compile Include="Creatures\Player\Player.cs" />
-    <Compile Include="Drawing\AboutGame.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\AboutGame.Designer.cs">
-      <DependentUpon>AboutGame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\CongratsControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\CongratsControl.Designer.cs">
-      <DependentUpon>CongratsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\HintControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Drawing\HintControl.Designer.cs">
-      <DependentUpon>HintControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\Info.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\Info.Designer.cs">
-      <DependentUpon>Info.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\Pause.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\Pause.Designer.cs">
-      <DependentUpon>Pause.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\Rules.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\Rules.Designer.cs">
-      <DependentUpon>Rules.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\StartWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\StartWindow.Designer.cs">
-      <DependentUpon>StartWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\WelcomeWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\WelcomeWindow.Designer.cs">
-      <DependentUpon>WelcomeWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Drawing\Window.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\WinWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Drawing\WinWindow.Designer.cs">
-      <DependentUpon>WinWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Logic\CreatureAnimation.cs" />
-    <Compile Include="Logic\CreatureCommand.cs" />
-    <Compile Include="Logic\Direction.cs" />
-    <Compile Include="Logic\Game.cs" />
-    <Compile Include="Logic\GameState.cs" />
-    <Compile Include="MapParser.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Helpers.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Drawing\AboutGame.resx">
-      <DependentUpon>AboutGame.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Drawing\Pause.resx">
-      <DependentUpon>Pause.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Drawing\StartWindow.resx">
-      <DependentUpon>StartWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Drawing\WelcomeWindow.resx">
-      <DependentUpon>WelcomeWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Drawing\WinWindow.resx">
-      <DependentUpon>WinWindow.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
+

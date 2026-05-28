@@ -5,7 +5,7 @@ namespace Bomberman
 {
     public static class MapParser
     {
-        private static readonly HashSet<char> RobotsAsSymbols = new HashSet<char>{'0', '1', '2', '3'};
+        private static readonly HashSet<char> RobotsAsSymbols = new HashSet<char>{'0', '1', '2', '3', '4'};
     
         public static ICreature[,][] GetMapFromText(string text)
         {
@@ -43,6 +43,7 @@ namespace Bomberman
                         '1' => Helpers.Array<RandomRobot>(),
                         '2' => Helpers.Array<SmartRobot>(),
                         '3' => Helpers.Array<WideSearchRobot>(),
+                        '4' => Helpers.Array<DijkstraRobot>(),
                         'Q' => new ICreature[] {new BreakableWall(), new ClosedDoor()},
                         'b' => Helpers.Array<PlusBomb>(),
                         's' => Helpers.Array<PlusSplash>(),

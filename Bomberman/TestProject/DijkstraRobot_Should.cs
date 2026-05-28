@@ -41,11 +41,12 @@ namespace TestProject
         }
 
         // Робот не должен проходить сквозь стены
-        [TestCase("###\r\n#4#\r\n###")]
-        [TestCase("#W#\r\nW4W\r\n#W#")]
+        // Робот заперт стенами — игрок в отдельном отсеке, недостижим
+        [TestCase("#######\r\n###4###\r\n#######\r\n###P###\r\n#######")]
+        [TestCase("#######\r\nWWW4WWW\r\n#######\r\n###P###\r\n#######")]
         public void DijkstraRobot_SurroundedByWalls_RobotStaysInPlace(string testMap)
         {
-            TestMapHelper.CreateMap(testMap);
+            Game.CreateMap(testMap);
             var gameState = new GameState();
             var timer = Stopwatch.StartNew();
 
@@ -55,15 +56,15 @@ namespace TestProject
                 gameState.EndAct();
             }
 
-            Game.Map[1, 1].Length.Should().Be(1);
-            Game.Map[1, 1].First().Should().BeAssignableTo<DijkstraRobot>();
+            Game.Map[3, 1].Length.Should().Be(1);
+            Game.Map[3, 1].First().Should().BeAssignableTo<DijkstraRobot>();
         }
 
         // Робот должен умереть, попав в огонь
         [Test]
         public void DijkstraRobot_HitByFire_RobotDies()
         {
-            TestMapHelper.CreateMap("#####\r\n# 4 #\r\n#####");
+            Game.CreateMap("#######\r\n# 4  P#\r\n#######");
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Right) };
             var gameState = new GameState();
             var timer = Stopwatch.StartNew();

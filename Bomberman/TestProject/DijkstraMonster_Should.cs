@@ -22,8 +22,8 @@ namespace TestProject
             monster.GetImageFileName().Should().Be("DijkstraMonster.png");
         }
 
-        [TestCase("#####\r\n#2 P#\r\n#####", 1, 1, 2, 1)]
-        [TestCase("#####\r\n#P 2#\r\n#####", 3, 1, 2, 1)]
+        [TestCase("#####\r\n#3 P#\r\n#####", 1, 1, 2, 1)]
+        [TestCase("#####\r\n#P 3#\r\n#####", 3, 1, 2, 1)]
         public void DijkstraMonster_PlayerNearby_MonsterMovesTowardsPlayer(
             string testMap, int xWas, int yWas, int x, int y)
         {
@@ -41,8 +41,8 @@ namespace TestProject
         }
 
         // Робот заперт стенами — игрок в отдельном отсеке, недостижим
-        [TestCase("#######\r\n###2###\r\n#######\r\n###P###\r\n#######")]
-        [TestCase("#######\r\nWWW2WWW\r\n#######\r\n###P###\r\n#######")]
+        [TestCase("#######\r\n###3###\r\n#######\r\n###P###\r\n#######")]
+        [TestCase("#######\r\nWWW3WWW\r\n#######\r\n###P###\r\n#######")]
         public void DijkstraMonster_SurroundedByWalls_MonsterStaysInPlace(string testMap)
         {
             var gameState = CreateGameState(testMap);
@@ -61,7 +61,7 @@ namespace TestProject
         [Test]
         public void DijkstraMonster_HitByFire_MonsterDies()
         {
-            var gameState = CreateGameState("#######\r\n# 2  P#\r\n#######");
+            var gameState = CreateGameState("#######\r\n# 3  P#\r\n#######");
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Right) };
             var timer = Stopwatch.StartNew();
 
@@ -79,7 +79,7 @@ namespace TestProject
         {
             var testMap =
                 "#####\r\n" +
-                "#2W #\r\n" +
+                "#3W #\r\n" +
                 "#  P#\r\n" +
                 "#####";
 

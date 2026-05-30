@@ -13,12 +13,7 @@ namespace TestProject
         private const double RobotThinkingTime = 0.21;
         private const double TimeGap = 0.05;
 
-        private static GameState CreateGameState(string map)
-        {
-            Program.LevelsToPlay.Clear();
-            Program.LevelsToPlay.Enqueue(map);
-            return new GameState();
-        }
+        private static GameState CreateGameState(string map) => new GameState(map);
 
         [Test]
         public void WideSearchRobot_GetImageFileName_RightImageName()

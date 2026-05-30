@@ -16,6 +16,11 @@ namespace Bomberman
             Game.CreateMap(Program.currentLevel);
         }
 
+        public GameState(string map)
+        {
+            Game.CreateMap(map);
+        }
+
         public void BeginAct()
         {
             Animations.Clear();

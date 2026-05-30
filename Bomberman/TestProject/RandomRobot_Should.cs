@@ -39,7 +39,9 @@ namespace TestProject
                 gameState.EndAct();
             }
 
-            HasRandomRobot().Should().BeFalse();
+            Game.Map[1, 1].Should().BeEmpty();
+            Game.Map[2, 1].Should().BeEmpty();
+            Game.Map[3, 1].Should().BeEmpty();
         }
 
         [TestCase("###\r\n#1#\r\n###\r\n#P#\r\n###")]

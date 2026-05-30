@@ -10,7 +10,7 @@ namespace TestProject
     [TestFixture]
     public class PredictableRobot_Should
     {
-        private const double RobotThinkingTime = 1;
+        private const double RobotThinkingTime = 0.5;
         private const double TimeGap = 0.05;
         
         private static GameState CreateGameState(string map) => new GameState(map);
@@ -23,7 +23,7 @@ namespace TestProject
         }
         
         [TestCase("####\r\n#0 #\r\n#P #\r\n####", 1, 1, 2, 1)]
-        [TestCase("####\r\n# 0#\r\n#P #\r\n####", 2, 1, 1, 1)]
+        [TestCase("####\r\n# 0#\r\n####\r\n#P #\r\n####", 2, 1, 1, 1)]
         [TestCase("####\r\n#P 0#\r\n####", 3, 1, 2, 1)]
         [TestCase("#####\r\n#P 0#\r\n#   #\r\n#####", 3, 1, 3, 2)]
         [TestCase("#####\r\n#P  #\r\n# #0#\r\n#####", 3, 2, 3, 1)]

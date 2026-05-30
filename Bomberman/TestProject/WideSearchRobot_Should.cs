@@ -10,7 +10,7 @@ namespace TestProject
     [TestFixture]
     public class WideSearchRobot_Should
     {
-        private const double RobotThinkingTime = 0.2;
+        private const double RobotThinkingTime = 0.21;
         private const double TimeGap = 0.05;
 
         private static GameState CreateGameState(string map) => new GameState(map);

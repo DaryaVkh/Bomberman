@@ -9,7 +9,7 @@ namespace Bomberman
     public class WideSearchRobot : Robot
     {
         public override string GetImageFileName() => "WideSearchRobot.png";
-        internal const double MsBeforeGo = 200;
+        private const double MsBeforeGo = 200;
         private static readonly Random random = new Random();
 
         public override CreatureCommand Act(int x, int y)

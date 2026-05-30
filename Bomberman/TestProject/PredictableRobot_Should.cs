@@ -10,28 +10,29 @@ namespace TestProject
     [TestFixture]
     public class PredictableRobot_Should
     {
-        private const double MonsterThinkingTime = 1;
+        private const double RobotThinkingTime = 1;
         private const double TimeGap = 0.05;
         
+        private static GameState CreateGameState(string map) => new GameState(map);
+        
         [Test]
-        public void PredictableMonster_GetImageFileName_RightImageName()
+        public void PredictableRobot_GetImageFileName_RightImageName()
         {
-            var monster = new PredictableRobot();
-            monster.GetImageFileName().Should().Be("PredictableMonster.png");
+            var robot = new PredictableRobot();
+            robot.GetImageFileName().Should().Be("PredictableRobot.png");
         }
         
-        [TestCase("####\r\n#M #\r\n####", 1, 1, 2, 1)]
-        [TestCase("####\r\n# M#\r\n####", 2, 1, 1, 1)]
-        [TestCase("####\r\n#  M#\r\n####", 3, 1, 2, 1)]
-        [TestCase("#####\r\n#  M#\r\n#   #\r\n#####", 3, 1, 3, 2)]
-        [TestCase("#####\r\n#   #\r\n# #M#\r\n#####", 3, 2, 3, 1)]
-        public void PredictableMonster_MonsterCanMove_MonsterPredictablyMoved(string testMap, int xWas, int yWas, 
+        [TestCase("####\r\n#0 #\r\n#P #\r\n####", 1, 1, 2, 1)]
+        [TestCase("####\r\n# 0#\r\n#P #\r\n####", 2, 1, 1, 1)]
+        [TestCase("####\r\n#P 0#\r\n####", 3, 1, 2, 1)]
+        [TestCase("#####\r\n#P 0#\r\n#   #\r\n#####", 3, 1, 3, 2)]
+        [TestCase("#####\r\n#P  #\r\n# #0#\r\n#####", 3, 2, 3, 1)]
+        public void PredictableRobot_RobotCanMove_RobotPredictablyMoved(string testMap, int xWas, int yWas, 
             int x, int y)
         {
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
-            var testTime = MonsterThinkingTime + TimeGap;
+            var testTime = RobotThinkingTime + TimeGap;
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {
@@ -45,15 +46,15 @@ namespace TestProject
         }
 
         [Test]
-        public void PredictableMonster_ConflictedObjectFire_MonsterDied()
+        public void PredictableRobot_ConflictedObjectFire_RobotDied()
         {
             var testMap = @"
-#####
-# M #
-#####";
-            Game.CreateMap(testMap);
+#######
+# 0  P#
+#######";
+            var gameState = CreateGameState(testMap);
             Game.Map[1, 1] = new ICreature[] { new Fire(1, Direction.Right) };
-            var gameState = new GameState();
+            
             var timer = Stopwatch.StartNew();
             var testTime = TimeGap;
             
@@ -68,14 +69,13 @@ namespace TestProject
             Game.Map[3, 1].Should().BeEmpty();
         }
         
-        [TestCase("###\r\n#M#\r\n###")]
-        [TestCase("#W#\r\nWMW\r\n#W#")]
-        public void PredictableMonster_GoThroughWalls_MonsterCantGoThroughWalls(string testMap)
+        [TestCase("###\r\n#0#\r\n###\r\n#P#\r\n###")]
+        [TestCase("#W#\r\nW0W\r\nWWW\r\nWPW\r\n#W#")]
+        public void PredictableRobot_GoThroughWalls_RobotCantGoThroughWalls(string testMap)
         {
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
-            var testTime = MonsterThinkingTime * 2 + TimeGap;
+            var testTime = RobotThinkingTime * 2 + TimeGap;
             
             while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {

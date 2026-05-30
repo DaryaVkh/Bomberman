@@ -12,7 +12,7 @@ namespace TestProject
         {
             var test = @"
 ######
-#PWM #
+#PW0 #
 ######";
             var map = MapParser.GetMapFromText(test);
             

@@ -86,7 +86,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime * 3 + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

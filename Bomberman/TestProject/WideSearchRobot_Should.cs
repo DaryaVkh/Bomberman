@@ -10,7 +10,7 @@ namespace TestProject
     [TestFixture]
     public class WideSearchRobot_Should
     {
-        private const double RobotThinkingTime = WideSearchRobot.MsBeforeGo / 1000.0 + 0.01;
+        private const double RobotThinkingTime = 0.2;
         private const double TimeGap = 0.05;
 
         private static GameState CreateGameState(string map) => new GameState(map);
@@ -86,7 +86,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime * 3 + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

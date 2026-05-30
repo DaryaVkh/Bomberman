@@ -7,6 +7,8 @@ namespace TestProject
     [TestFixture]
     public class BreakableWall_Should
     {
+        private static GameState CreateGameState(string map) => new GameState(map);
+        
         [Test]
         public void BreakableWall_GetImageFileName_RightImageName()
         {
@@ -17,13 +19,15 @@ namespace TestProject
         [Test]
         public void BreakableWall_ConflictedObjectFire_BreakableWallBroke()
         {
+
             var testMap = @"
 ####
 #W #
+#P #
 ####";
-            Game.CreateMap(testMap);
+            
+            var gameState = CreateGameState(testMap);
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Left) };
-            var gameState = new GameState();
             
             gameState.BeginAct();
             gameState.EndAct();

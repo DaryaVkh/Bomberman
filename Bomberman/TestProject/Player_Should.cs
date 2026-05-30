@@ -16,6 +16,8 @@ namespace TestProject
         private const double MonsterThinkingTime = 1;
         private const double TimeGap = 0.05;
         
+        private static GameState CreateGameState(string map) => new GameState(map);
+        
         [Test]
         public void Player_GetImageFileName_CorrectImageName()
         {
@@ -30,8 +32,7 @@ namespace TestProject
 ####
 # P#
 ####";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
 
             Game.KeyPressed = Keys.Left;
             gameState.BeginAct();
@@ -54,8 +55,7 @@ namespace TestProject
 #    P   #
 #        #
 ##########";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
 
             foreach (var key in keys)
             {
@@ -79,8 +79,7 @@ namespace TestProject
 #####
 #P W#
 #####";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
 
             foreach (var key in keys)
             {
@@ -102,8 +101,7 @@ namespace TestProject
 ######
 #  P #
 ######";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
 
             Game.KeyPressed = Keys.Space;
             gameState.BeginAct();
@@ -121,8 +119,7 @@ namespace TestProject
 ######
 #  P #
 ######";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
 
             var keys = new[] { Keys.Space, Keys.Left, Keys.Space };
             foreach (var key in keys)
@@ -143,14 +140,13 @@ namespace TestProject
         {
             var testMap = @"
 ######
-#MP  #
+#0P  #
 ######";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
             var testTime = TimeGap + MonsterThinkingTime;
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
+            while (!Game.Map[2, 1].OfType<PredictableRobot>().Any() && timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -168,10 +164,10 @@ namespace TestProject
 #####
 # P #
 #####";
-            Game.CreateMap(testMap);
+            var gameState = CreateGameState(testMap);
             var player = new Player();
             Game.Map[3, 1] = new ICreature[] { new Fire(1, Direction.Left) };
-            var gameState = new GameState();
+
             var timer = Stopwatch.StartNew();
             var testTime = TimeGap;
 
@@ -192,13 +188,12 @@ namespace TestProject
 #####
 # P #
 #####";
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
             var testTime = TimeGap + SecondsBeforeExplosion;
 
             Game.KeyPressed = Keys.Space;
-            while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
+            while (!Game.Map[2, 1].OfType<Fire>().Any() && timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

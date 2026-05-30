@@ -18,6 +18,7 @@ namespace Bomberman
 
         public GameState(string map)
         {
+            Program.currentLevel = map;
             Game.CreateMap(map);
         }
 

@@ -13,6 +13,13 @@ namespace TestProject
         private const double RobotThinkingTime = 0.21;
         private const double TimeGap = 0.05;
 
+        private static GameState CreateGameState(string map)
+        {
+            Program.LevelsToPlay.Clear();
+            Program.LevelsToPlay.Enqueue(map);
+            return new GameState();
+        }
+
         [Test]
         public void WideSearchRobot_GetImageFileName_RightImageName()
         {
@@ -25,8 +32,7 @@ namespace TestProject
         public void WideSearchRobot_PlayerNearby_RobotMovesTowardsPlayer(
             string testMap, int xWas, int yWas, int x, int y)
         {
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))
@@ -44,8 +50,7 @@ namespace TestProject
         [TestCase("#######\r\nWWW3WWW\r\n#######\r\n###P###\r\n#######")]
         public void WideSearchRobot_SurroundedByWalls_RobotStaysInPlace(string testMap)
         {
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime * 2 + TimeGap))
@@ -58,13 +63,11 @@ namespace TestProject
             Game.Map[3, 1].First().Should().BeAssignableTo<WideSearchRobot>();
         }
 
-        // Игрок в стороне, робот на позиции с огнём — должен умереть
         [Test]
         public void WideSearchRobot_HitByFire_RobotDies()
         {
-            Game.CreateMap("#######\r\n# 3  P#\r\n#######");
+            var gameState = CreateGameState("#######\r\n# 3  P#\r\n#######");
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Right) };
-            var gameState = new GameState();
             var timer = Stopwatch.StartNew();
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(TimeGap))
@@ -85,8 +88,7 @@ namespace TestProject
                 "#  P#\r\n" +
                 "#####";
 
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime * 3 + TimeGap))
@@ -107,8 +109,7 @@ namespace TestProject
                 "#P  #\r\n" +
                 "#####";
 
-            Game.CreateMap(testMap);
-            var gameState = new GameState();
+            var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))

@@ -9,13 +9,13 @@ namespace Bomberman
     public class WideSearchRobot : Robot
     {
         public override string GetImageFileName() => "WideSearchRobot.png";
-        private const double msBeforeGo = 200;
+        internal const double MsBeforeGo = 200;
         private static readonly Random random = new Random();
 
         public override CreatureCommand Act(int x, int y)
         {
             Position = new Point(x, y);
-            if (Timer.ElapsedMilliseconds < msBeforeGo)
+            if (Timer.ElapsedMilliseconds < MsBeforeGo)
             {
                 Game.WantToMoveRobot[x, y] = true;
                 return new CreatureCommand();

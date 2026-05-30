@@ -10,7 +10,7 @@ namespace TestProject
     [TestFixture]
     public class WideSearchRobot_Should
     {
-        private const double RobotThinkingTime = 0.21;
+        private const double RobotThinkingTime = WideSearchRobot.MsBeforeGo / 1000.0 + 0.01;
         private const double TimeGap = 0.05;
 
         private static GameState CreateGameState(string map) => new GameState(map);
@@ -101,6 +101,7 @@ namespace TestProject
             var testMap =
                 "#####\r\n" +
                 "#3  #\r\n" +
+                "#   #\r\n" +
                 "#P  #\r\n" +
                 "#####";
 

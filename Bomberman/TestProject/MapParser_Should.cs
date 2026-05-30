@@ -25,7 +25,7 @@ namespace TestProject
             map[2, 1].Length.Should().Be(1);
             map[2, 1].Should().ContainItemsAssignableTo<BreakableWall>();
             map[3, 1].Length.Should().Be(1);
-            map[3, 1].Should().ContainItemsAssignableTo<PredictableRobot>();
+            map[3, 1].Should().ContainItemsAssignableTo<PredictableMonster>();
             map[4, 1].Should().BeEmpty();
         }
     }

@@ -5,10 +5,10 @@ using System.Media;
 
 namespace Bomberman
 {
-    public abstract class Robot : ICreatureWithTimer
+    public abstract class Monster : ICreatureWithTimer
     {
         protected Point Position { get; set; }
-        private static readonly string soundFile = Path.Combine(Program.SoundsPath, "robot.wav");
+        private static readonly string soundFile = Path.Combine(Program.SoundsPath, "monster.wav");
         
         protected Stopwatch Timer = Stopwatch.StartNew();
         private bool alive = true;
@@ -27,9 +27,9 @@ namespace Bomberman
                 {
                     new SoundPlayer(soundFile).Play();
                 }
-                Game.WantToMoveRobot[Position.X, Position.Y] = false;
+                Game.WantToMoveMonster[Position.X, Position.Y] = false;
                 alive = false;
-                Game.RobotsCount--;
+                Game.MonstersCount--;
             }
 
             return result;

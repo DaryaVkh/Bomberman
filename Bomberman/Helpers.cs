@@ -16,9 +16,9 @@ namespace Bomberman
             return cell.OfType<ForceField>().Any();
         }
         
-        public static bool ContainsRobot(this IEnumerable<ICreature> cell)
+        public static bool ContainsMonster(this IEnumerable<ICreature> cell)
         {
-            return cell.Any(creature => creature is Robot);
+            return cell.Any(creature => creature is Monster);
         }
 
         public static ICreature[] Array<T>() where T : ICreature, new() => new ICreature[] { new T() };

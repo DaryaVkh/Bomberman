@@ -8,18 +8,18 @@ using NUnit.Framework;
 namespace TestProject
 {
     [TestFixture]
-    public class PredictableRobot_Should
+    public class PredictableMonster_Should
     {
-        private const double RobotThinkingTime = 0.5;
+        private const double MonsterThinkingTime = 0.5;
         private const double TimeGap = 0.05;
         
         private static GameState CreateGameState(string map) => new GameState(map);
         
         [Test]
-        public void PredictableRobot_GetImageFileName_RightImageName()
+        public void PredictableMonster_GetImageFileName_RightImageName()
         {
-            var robot = new PredictableRobot();
-            robot.GetImageFileName().Should().Be("PredictableRobot.png");
+            var monster = new PredictableMonster();
+            monster.GetImageFileName().Should().Be("PredictableMonster.png");
         }
         
         [TestCase("####\r\n#0 #\r\n#P #\r\n####", 1, 1, 2, 1)]
@@ -27,12 +27,12 @@ namespace TestProject
         [TestCase("####\r\n#P 0#\r\n####", 3, 1, 2, 1)]
         [TestCase("#####\r\n#P 0#\r\n#   #\r\n#####", 3, 1, 3, 2)]
         [TestCase("#####\r\n#P  #\r\n# #0#\r\n#####", 3, 2, 3, 1)]
-        public void PredictableRobot_RobotCanMove_RobotPredictablyMoved(string testMap, int xWas, int yWas, 
+        public void PredictableMonster_MonsterCanMove_MonsterPredictablyMoved(string testMap, int xWas, int yWas, 
             int x, int y)
         {
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
-            var testTime = RobotThinkingTime + TimeGap;
+            var testTime = MonsterThinkingTime + TimeGap;
 
             while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {
@@ -42,11 +42,11 @@ namespace TestProject
 
             Game.Map[xWas, yWas].Should().BeEmpty();
             Game.Map[x, y].Length.Should().Be(1);
-            Game.Map[x, y].First().Should().BeAssignableTo<PredictableRobot>();
+            Game.Map[x, y].First().Should().BeAssignableTo<PredictableMonster>();
         }
 
         [Test]
-        public void PredictableRobot_ConflictedObjectFire_RobotDied()
+        public void PredictableMonster_ConflictedObjectFire_MonsterDied()
         {
             var testMap = @"
 #######
@@ -71,11 +71,11 @@ namespace TestProject
         
         [TestCase("###\r\n#0#\r\n###\r\n#P#\r\n###")]
         [TestCase("#W#\r\nW0W\r\nWWW\r\nWPW\r\n#W#")]
-        public void PredictableRobot_GoThroughWalls_RobotCantGoThroughWalls(string testMap)
+        public void PredictableMonster_GoThroughWalls_MonsterCantGoThroughWalls(string testMap)
         {
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
-            var testTime = RobotThinkingTime * 2 + TimeGap;
+            var testTime = MonsterThinkingTime * 2 + TimeGap;
             
             while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {
@@ -84,7 +84,7 @@ namespace TestProject
             }
 
             Game.Map[1, 1].Length.Should().Be(1);
-            Game.Map[1, 1].First().Should().BeAssignableTo<PredictableRobot>();
+            Game.Map[1, 1].First().Should().BeAssignableTo<PredictableMonster>();
         }
     }
 }

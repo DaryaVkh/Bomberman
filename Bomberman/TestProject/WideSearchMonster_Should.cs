@@ -8,58 +8,58 @@ using NUnit.Framework;
 namespace TestProject
 {
     [TestFixture]
-    public class WideSearchRobot_Should
+    public class WideSearchMonster_Should
     {
-        private const double RobotThinkingTime = 0.21;
+        private const double MonsterThinkingTime = 0.21;
         private const double TimeGap = 0.05;
 
         private static GameState CreateGameState(string map) => new GameState(map);
 
         [Test]
-        public void WideSearchRobot_GetImageFileName_RightImageName()
+        public void WideSearchMonster_GetImageFileName_RightImageName()
         {
-            var robot = new WideSearchRobot();
-            robot.GetImageFileName().Should().Be("WideSearchRobot.png");
+            var monster = new WideSearchMonster();
+            monster.GetImageFileName().Should().Be("WideSearchMonster.png");
         }
 
         [TestCase("#####\r\n#3 P#\r\n#####", 1, 1, 2, 1)]
         [TestCase("#####\r\n#P 3#\r\n#####", 3, 1, 2, 1)]
-        public void WideSearchRobot_PlayerNearby_RobotMovesTowardsPlayer(
+        public void WideSearchMonster_PlayerNearby_MonsterMovesTowardsPlayer(
             string testMap, int xWas, int yWas, int x, int y)
         {
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
             }
 
             Game.Map[xWas, yWas].Should().BeEmpty();
-            Game.Map[x, y].OfType<WideSearchRobot>().Should().HaveCount(1);
+            Game.Map[x, y].OfType<WideSearchMonster>().Should().HaveCount(1);
         }
 
         // Робот заперт стенами — игрок в отдельном отсеке, недостижим
         [TestCase("#######\r\n###3###\r\n#######\r\n###P###\r\n#######")]
         [TestCase("#######\r\nWWW3WWW\r\n#######\r\n###P###\r\n#######")]
-        public void WideSearchRobot_SurroundedByWalls_RobotStaysInPlace(string testMap)
+        public void WideSearchMonster_SurroundedByWalls_MonsterStaysInPlace(string testMap)
         {
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime * 2 + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime * 2 + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
             }
 
             Game.Map[3, 1].Length.Should().Be(1);
-            Game.Map[3, 1].First().Should().BeAssignableTo<WideSearchRobot>();
+            Game.Map[3, 1].First().Should().BeAssignableTo<WideSearchMonster>();
         }
 
         [Test]
-        public void WideSearchRobot_HitByFire_RobotDies()
+        public void WideSearchMonster_HitByFire_MonsterDies()
         {
             var gameState = CreateGameState("#######\r\n# 3  P#\r\n#######");
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Right) };
@@ -71,11 +71,11 @@ namespace TestProject
                 gameState.EndAct();
             }
 
-            Game.Map[2, 1].OfType<WideSearchRobot>().Should().BeEmpty();
+            Game.Map[2, 1].OfType<WideSearchMonster>().Should().BeEmpty();
         }
 
         [Test]
-        public void WideSearchRobot_ObstacleBetween_RobotGoesAround()
+        public void WideSearchMonster_ObstacleBetween_MonsterGoesAround()
         {
             var testMap =
                 "#####\r\n" +
@@ -86,17 +86,17 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
             }
 
-            Game.Map[1, 1].OfType<WideSearchRobot>().Should().BeEmpty();
+            Game.Map[1, 1].OfType<WideSearchMonster>().Should().BeEmpty();
         }
 
         [Test]
-        public void WideSearchRobot_TwoPaths_RobotTakesShorterOne()
+        public void WideSearchMonster_TwoPaths_MonsterTakesShorterOne()
         {
             var testMap =
                 "#####\r\n" +
@@ -108,13 +108,13 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(RobotThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
             }
 
-            Game.Map[1, 2].OfType<WideSearchRobot>().Should().HaveCount(1);
+            Game.Map[1, 2].OfType<WideSearchMonster>().Should().HaveCount(1);
         }
     }
 }

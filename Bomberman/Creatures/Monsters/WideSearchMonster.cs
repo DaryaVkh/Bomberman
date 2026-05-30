@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace Bomberman
 {
-    public class WideSearchRobot : Robot
+    public class WideSearchMonster : Monster
     {
-        public override string GetImageFileName() => "WideSearchRobot.png";
+        public override string GetImageFileName() => "WideSearchMonster.png";
         private const double MsBeforeGo = 200;
         private static readonly Random random = new Random();
 
@@ -17,19 +17,19 @@ namespace Bomberman
             Position = new Point(x, y);
             if (Timer.ElapsedMilliseconds < MsBeforeGo)
             {
-                Game.WantToMoveRobot[x, y] = true;
+                Game.WantToMoveMonster[x, y] = true;
                 return new CreatureCommand();
             }
 
             Timer = Stopwatch.StartNew();
-            Game.WantToMoveRobot[x, y] = false;
+            Game.WantToMoveMonster[x, y] = false;
             var newPosition = GetOptimalMove(x, y);
             if (!CanMoveFinal(newPosition))
             {
-                Game.WantToMoveRobot[x, y] = true;
+                Game.WantToMoveMonster[x, y] = true;
                 return new CreatureCommand();
             }
-            Game.WantToMoveRobot[newPosition.X, newPosition.Y] = true;
+            Game.WantToMoveMonster[newPosition.X, newPosition.Y] = true;
             var command = new CreatureCommand{DeltaX = newPosition.X - x, DeltaY = newPosition.Y - y};
             Position = newPosition;
 
@@ -81,8 +81,8 @@ namespace Bomberman
         private static bool CanMoveFinal(Point point)
         {
             return CanMove(point)
-                   && !Game.Map[point.X, point.Y].ContainsRobot()
-                   && !Game.WantToMoveRobot[point.X, point.Y];
+                   && !Game.Map[point.X, point.Y].ContainsMonster()
+                   && !Game.WantToMoveMonster[point.X, point.Y];
         }
 
         private readonly Point[] AllDirections = {

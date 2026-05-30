@@ -146,7 +146,7 @@ namespace TestProject
             var timer = Stopwatch.StartNew();
             var testTime = TimeGap + MonsterThinkingTime;
 
-            while (!Game.Map[2, 1].OfType<PredictableRobot>().Any() && timer.Elapsed <= TimeSpan.FromSeconds(testTime))
+            while (!Game.Map[2, 1].OfType<PredictableMonster>().Any() && timer.Elapsed <= TimeSpan.FromSeconds(testTime))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -154,7 +154,7 @@ namespace TestProject
 
             Game.Map[2, 1].Length.Should().Be(1);
             Game.Map[2, 1].Select(c => c.GetType().Name).Should().NotContain("Player");
-            Game.Map[2, 1].Should().ContainItemsAssignableTo<PredictableRobot>();
+            Game.Map[2, 1].Should().ContainItemsAssignableTo<PredictableMonster>();
         }
 
         [Test]

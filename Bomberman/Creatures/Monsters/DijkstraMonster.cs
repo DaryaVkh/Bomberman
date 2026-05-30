@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Bomberman
 {
-    public class DijkstraRobot : Robot
+    public class DijkstraMonster : Monster
     {
-        public override string GetImageFileName() => "DijkstraRobot.png";
+        public override string GetImageFileName() => "DijkstraMonster.png";
         private const double MsBeforeGo = 180;
 
         public override CreatureCommand Act(int x, int y)
@@ -15,22 +15,22 @@ namespace Bomberman
             Position = new Point(x, y);
             if (Timer.ElapsedMilliseconds < MsBeforeGo)
             {
-                Game.WantToMoveRobot[x, y] = true;
+                Game.WantToMoveMonster[x, y] = true;
                 return new CreatureCommand();
             }
 
             Timer = Stopwatch.StartNew();
-            Game.WantToMoveRobot[x, y] = false;
+            Game.WantToMoveMonster[x, y] = false;
 
             var nextStep = FindNextStep(x, y);
 
             if (!CanMoveFinal(nextStep))
             {
-                Game.WantToMoveRobot[x, y] = true;
+                Game.WantToMoveMonster[x, y] = true;
                 return new CreatureCommand();
             }
 
-            Game.WantToMoveRobot[nextStep.X, nextStep.Y] = true;
+            Game.WantToMoveMonster[nextStep.X, nextStep.Y] = true;
             Position = nextStep;
             return new CreatureCommand { DeltaX = nextStep.X - x, DeltaY = nextStep.Y - y };
         }
@@ -118,8 +118,8 @@ namespace Bomberman
 
         private static bool CanMoveFinal(Point p) =>
             CanMove(p)
-            && !Game.Map[p.X, p.Y].ContainsRobot()
-            && !Game.WantToMoveRobot[p.X, p.Y];
+            && !Game.Map[p.X, p.Y].ContainsMonster()
+            && !Game.WantToMoveMonster[p.X, p.Y];
 
         private static readonly Point[] Directions =
         {

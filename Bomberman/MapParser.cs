@@ -5,7 +5,7 @@ namespace Bomberman
 {
     public static class MapParser
     {
-        private static readonly HashSet<char> RobotsAsSymbols = new HashSet<char>{'0', '1', '2', '3'};
+        private static readonly HashSet<char> MonstersAsSymbols = new HashSet<char>{'0', '1', '2', '3'};
     
         public static ICreature[,][] GetMapFromText(string text)
         {
@@ -19,8 +19,8 @@ namespace Bomberman
                 {
                     if (lines[y][x] == 'P')
                         playersCount++;
-                    if (RobotsAsSymbols.Contains(lines[y][x]))
-                        Game.RobotsCount++;
+                    if (MonstersAsSymbols.Contains(lines[y][x]))
+                        Game.MonstersCount++;
                     if (lines[y][x] == 'X')
                         Game.PlatesCount++;
                     if (lines[y][x] == 'R')
@@ -39,10 +39,10 @@ namespace Bomberman
                         'R' => Helpers.Array<RemoteControl>(),
                         'W' => Helpers.Array<BreakableWall>(),
                         '#' => Helpers.Array<UnbreakableWall>(),
-                        '0' => Helpers.Array<PredictableRobot>(),
-                        '1' => Helpers.Array<RandomRobot>(),
-                        '2' => Helpers.Array<DijkstraRobot>(),
-                        '3' => Helpers.Array<WideSearchRobot>(),
+                        '0' => Helpers.Array<PredictableMonster>(),
+                        '1' => Helpers.Array<RandomMonster>(),
+                        '2' => Helpers.Array<DijkstraMonster>(),
+                        '3' => Helpers.Array<WideSearchMonster>(),
                         'Q' => new ICreature[] {new BreakableWall(), new ClosedDoor()},
                         'b' => Helpers.Array<PlusBomb>(),
                         's' => Helpers.Array<PlusSplash>(),

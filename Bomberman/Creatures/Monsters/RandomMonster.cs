@@ -5,9 +5,9 @@ using System.Drawing;
 
 namespace Bomberman
 {
-    public class RandomRobot : Robot
+    public class RandomMonster : Monster
     {
-        public override string GetImageFileName() => "RandomRobot.png";
+        public override string GetImageFileName() => "RandomMonster.png";
         private Point? direction;
         private const double msBeforeGo = 500;
         private readonly Random random = new Random();
@@ -17,14 +17,14 @@ namespace Bomberman
             Position = new Point(x, y);
             if (Timer.ElapsedMilliseconds < msBeforeGo)
             {
-                Game.WantToMoveRobot[x, y] = true;
+                Game.WantToMoveMonster[x, y] = true;
                 return new CreatureCommand();
             }
 
             Timer = Stopwatch.StartNew();
-            Game.WantToMoveRobot[x, y] = false;
+            Game.WantToMoveMonster[x, y] = false;
             var command = GetOptimalMove(x, y);
-            Game.WantToMoveRobot[x + command.DeltaX, y + command.DeltaY] = true;
+            Game.WantToMoveMonster[x + command.DeltaX, y + command.DeltaY] = true;
             Position = new Point(x + command.DeltaX, y + command.DeltaY);
 
             return command;
@@ -64,8 +64,8 @@ namespace Bomberman
         private static bool CanMoveFinal(Point point)
         {
             return CanMove(point)
-                   && !Game.Map[point.X, point.Y].ContainsRobot()
-                   && !Game.WantToMoveRobot[point.X, point.Y];
+                   && !Game.Map[point.X, point.Y].ContainsMonster()
+                   && !Game.WantToMoveMonster[point.X, point.Y];
         }
 
         private readonly Point[] AllDirections = {

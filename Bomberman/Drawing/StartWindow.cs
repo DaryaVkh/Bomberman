@@ -62,13 +62,6 @@ namespace Bomberman
             }
         }
 
-        private void AboutGame_Click(object sender, EventArgs e)
-        {
-            var aboutGame = new AboutGame(this);
-            aboutGame.Show();
-            Hide();
-        }
-
         private void Rules_Click(object sender, EventArgs e)
         {
             var rules = new Rules(this);

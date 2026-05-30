@@ -89,7 +89,7 @@ namespace Bomberman
                 GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight + GameState.ElementSize / 2);
             foreach (var a in gameState.Animations)
-                e.Graphics.DrawImageUnscaled(
+                e.Graphics.DrawImage(
                     bitmaps[a.Creature.GetImageFileName()],
                     a.Location.X,
                     a.Location.Y,

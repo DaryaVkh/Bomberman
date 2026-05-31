@@ -16,7 +16,7 @@ namespace Bomberman
         {
             if (keys == Keys.None)
                 return;
-            var direction = (keys == Keys.Right || keys == Keys.Down)
+            var direction = (keys == Keys.Right || keys == Keys.Down || keys == Keys.D || keys == Keys.S)
                 ? "right" 
                 : "left";
             ImageName = $"running-{direction}.png";
@@ -31,21 +31,25 @@ namespace Bomberman
             switch (Game.KeyPressed)
             {
                 case Keys.Right:
+                case Keys.D:
                     if (x + 1 < Game.MapWidth && !Game.Map[x + 1, y].ContainsObstaclesOrBomb()
                                               && !Game.Map[x + 1, y].ContainsForceField())
                         result.DeltaX = 1;
                     break;
                 case Keys.Left:
+                case Keys.A:
                     if (x > 0 && !Game.Map[x - 1, y].ContainsObstaclesOrBomb()
                               && !Game.Map[x - 1, y].ContainsForceField())
                         result.DeltaX = -1;
                     break;
                 case Keys.Down:
+                case Keys.S:
                     if (y + 1 < Game.MapHeight && !Game.Map[x, y + 1].ContainsObstaclesOrBomb()
                                                && !Game.Map[x, y + 1].ContainsForceField())
                         result.DeltaY = 1;
                     break;
                 case Keys.Up:
+                case Keys.W:
                     if (y > 0 && !Game.Map[x, y - 1].ContainsObstaclesOrBomb()
                               && !Game.Map[x, y - 1].ContainsForceField())
                         result.DeltaY = -1;

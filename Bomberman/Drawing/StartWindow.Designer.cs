@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Security.AccessControl;
 using System.Windows.Forms;
 
@@ -34,7 +35,6 @@ namespace Bomberman
         /// </summary>
         private void InitializeComponent()
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(StartWindow));
             CloseButton = new Button();
             NewGame = new Button();
             Saving = new Button();
@@ -130,7 +130,7 @@ namespace Bomberman
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = ((Image) (resources.GetObject("$this.BackgroundImage")));
+            BackgroundImage = Image.FromFile(Path.Combine(Program.SlnPath, "Resources", "MainMenu.jpg"));
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(2000, 1000);
             Controls.Add(NewGame);

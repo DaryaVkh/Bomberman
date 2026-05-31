@@ -85,7 +85,7 @@ namespace Bomberman
         protected override void OnPaint(PaintEventArgs e)
         {
             e.Graphics.TranslateTransform(0, 23);
-            e.Graphics.FillRectangle(Brushes.Silver, 0, 0, 
+            e.Graphics.FillRectangle(Brushes.White, 0, 0, 
                 GameState.ElementSize * Game.MapWidth,
                 GameState.ElementSize * Game.MapHeight + GameState.ElementSize / 2);
             foreach (var a in gameState.Animations)

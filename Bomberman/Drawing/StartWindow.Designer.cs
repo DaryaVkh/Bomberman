@@ -40,22 +40,7 @@ namespace Bomberman
             Saving = new Button();
             Rules = new Button();
             VolumeButton = new Button();
-            Entertainment = new Label();
             SuspendLayout();
-            //
-            // Entertainment
-            //
-            Entertainment.BackColor = Color.Transparent;
-            Entertainment.Font = new Font("Kristen ITC", 11F, FontStyle.Bold);
-            Entertainment.ForeColor = Color.Black;
-            Entertainment.Name = "PauseText";
-            Entertainment.Size = new Size(1000, 50);
-            Entertainment.TabStop = true;
-            Entertainment.Text = "© 2020   Sweet   Brioches   Entertainment";
-            Entertainment.BorderStyle = BorderStyle.None;
-            Entertainment.TextAlign = ContentAlignment.TopCenter;
-            Entertainment.AllowDrop = false;
-            Entertainment.Cursor = DefaultCursor;
             //
             // CloseButton
             // 
@@ -138,7 +123,6 @@ namespace Bomberman
             Controls.Add(Saving);
             Controls.Add(Rules);
             Controls.Add(VolumeButton);
-            Controls.Add(Entertainment);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "StartWindow";
@@ -156,7 +140,6 @@ namespace Bomberman
             CloseButton.Location = new Point((Width - Saving.Width) / 2, 
                 Rules.Location.Y + 55);
             VolumeButton.Location = new Point(Width - VolumeButton.Width, 0);
-            Entertainment.Location = new Point((Width - Entertainment.Width) / 2, Height - 18);
         }
 
         #endregion
@@ -165,7 +148,6 @@ namespace Bomberman
         private Button NewGame;
         private Button Saving;
         private Button Rules;
-        private Label Entertainment;
         public static Button VolumeButton;
     }
 }

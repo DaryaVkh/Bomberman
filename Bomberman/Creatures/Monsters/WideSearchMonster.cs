@@ -9,7 +9,7 @@ namespace Bomberman
     public class WideSearchMonster : Monster
     {
         public override string GetImageFileName() => "WideSearchMonster.png";
-        private const double MsBeforeGo = 200;
+        public const double MsBeforeGo = 200;
         private static readonly Random random = new Random();
 
         public override CreatureCommand Act(int x, int y)

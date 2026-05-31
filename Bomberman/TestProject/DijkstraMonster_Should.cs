@@ -10,8 +10,8 @@ namespace TestProject
     [TestFixture]
     public class DijkstraMonster_Should
     {
-        private const double MonsterThinkingTime = 0.2;
-        private const double TimeGap = 0.05;
+        private const double MonsterThinkingTime = DijkstraMonster.MsBeforeGo;
+        private const double TimeGap = 50;
 
         private static GameState CreateGameState(string map) => new GameState(map);
 
@@ -30,7 +30,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -48,7 +48,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime * 2 + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime * 2 + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -61,11 +61,15 @@ namespace TestProject
         [Test]
         public void DijkstraMonster_HitByFire_MonsterDies()
         {
-            var gameState = CreateGameState("#######\r\n# 3  P#\r\n#######");
+            var testMap = @"
+#######
+# 3  P#
+#######";
+            var gameState = CreateGameState(testMap);
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Right) };
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -77,16 +81,16 @@ namespace TestProject
         [Test]
         public void DijkstraMonster_ObstacleBetween_MonsterGoesAround()
         {
-            var testMap =
-                "#####\r\n" +
-                "#3W #\r\n" +
-                "#  P#\r\n" +
-                "#####";
+            var testMap = @"
+#####
+#3W #
+#  P#
+#####";
 
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

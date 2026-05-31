@@ -9,7 +9,7 @@ namespace Bomberman
     {
         public override string GetImageFileName() => "RandomMonster.png";
         private Point? direction;
-        private const double msBeforeGo = 500;
+        public const double msBeforeGo = 500;
         private readonly Random random = new Random();
         
         public override CreatureCommand Act(int x, int y)

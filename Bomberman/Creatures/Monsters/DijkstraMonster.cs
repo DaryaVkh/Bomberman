@@ -8,7 +8,7 @@ namespace Bomberman
     public class DijkstraMonster : Monster
     {
         public override string GetImageFileName() => "DijkstraMonster.png";
-        private const double MsBeforeGo = 180;
+        public const double MsBeforeGo = 180;
 
         public override CreatureCommand Act(int x, int y)
         {

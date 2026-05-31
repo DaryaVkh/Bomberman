@@ -10,8 +10,8 @@ namespace TestProject
     [TestFixture]
     public class PredictableMonster_Should
     {
-        private const double MonsterThinkingTime = 0.5;
-        private const double TimeGap = 0.05;
+        private const double MonsterThinkingTime = PredictableMonster.msToGo;
+        private const double TimeGap = 50;
         
         private static GameState CreateGameState(string map) => new GameState(map);
         
@@ -34,7 +34,7 @@ namespace TestProject
             var timer = Stopwatch.StartNew();
             var testTime = MonsterThinkingTime + TimeGap;
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(testTime))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -58,7 +58,7 @@ namespace TestProject
             var timer = Stopwatch.StartNew();
             var testTime = TimeGap;
             
-            while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(testTime))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -77,7 +77,7 @@ namespace TestProject
             var timer = Stopwatch.StartNew();
             var testTime = MonsterThinkingTime * 2 + TimeGap;
             
-            while (timer.Elapsed <= TimeSpan.FromSeconds(testTime))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(testTime))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

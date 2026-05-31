@@ -13,7 +13,7 @@ namespace TestProject
     public class Player_Should
     {
         private const double SecondsBeforeExplosion = Bomb.secondsBeforeExplosion;
-        private const double MonsterThinkingTime = 1;
+        private const double MonsterThinkingTime = PredictableMonster.msToGo / 1000;
         private const double TimeGap = 0.05;
         
         private static GameState CreateGameState(string map) => new GameState(map);

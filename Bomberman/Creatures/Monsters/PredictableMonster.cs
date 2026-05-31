@@ -6,7 +6,7 @@ namespace Bomberman
     public class PredictableMonster : Monster
     {
         private int direction;
-        private const double msToGo = 500;
+        public const double msToGo = 500;
         
         public override string GetImageFileName() => "PredictableMonster.png";
 

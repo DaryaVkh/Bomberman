@@ -10,8 +10,8 @@ namespace TestProject
     [TestFixture]
     public class RandomMonster_Should
     {
-        private const double MonsterThinkingTime = 0.5;
-        private const double TimeGap = 0.05;
+        private const double MonsterThinkingTime = RandomMonster.msBeforeGo;
+        private const double TimeGap = 50;
 
         private static GameState CreateGameState(string map) => new GameState(map);
 
@@ -33,7 +33,7 @@ namespace TestProject
             Game.Map[1, 1] = new ICreature[] { new Fire(1, Direction.Right) };
 
             var timer = Stopwatch.StartNew();
-            while (timer.Elapsed <= TimeSpan.FromSeconds(TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -51,7 +51,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime * 2 + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime * 2 + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

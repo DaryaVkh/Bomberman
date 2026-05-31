@@ -10,8 +10,8 @@ namespace TestProject
     [TestFixture]
     public class WideSearchMonster_Should
     {
-        private const double MonsterThinkingTime = 0.21;
-        private const double TimeGap = 0.05;
+        private const double MonsterThinkingTime = WideSearchMonster.MsBeforeGo;
+        private const double TimeGap = 50;
 
         private static GameState CreateGameState(string map) => new GameState(map);
 
@@ -30,7 +30,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -48,7 +48,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime * 2 + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime * 2 + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -65,7 +65,7 @@ namespace TestProject
             Game.Map[2, 1] = new ICreature[] { new Fire(1, Direction.Right) };
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -86,7 +86,7 @@ namespace TestProject
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();
@@ -98,17 +98,17 @@ namespace TestProject
         [Test]
         public void WideSearchMonster_TwoPaths_MonsterTakesShorterOne()
         {
-            var testMap =
-                "#####\r\n" +
-                "#2  #\r\n" +
-                "#   #\r\n" +
-                "#P  #\r\n" +
-                "#####";
+            var testMap = @"
+#####
+#2  #
+#   #
+#P  #
+#####";
 
             var gameState = CreateGameState(testMap);
             var timer = Stopwatch.StartNew();
 
-            while (timer.Elapsed <= TimeSpan.FromSeconds(MonsterThinkingTime + TimeGap))
+            while (timer.Elapsed <= TimeSpan.FromMilliseconds(MonsterThinkingTime + TimeGap))
             {
                 gameState.BeginAct();
                 gameState.EndAct();

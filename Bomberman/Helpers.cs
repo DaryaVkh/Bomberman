@@ -7,8 +7,13 @@ namespace Bomberman
     {
         public static bool ContainsObstaclesOrBomb(this IEnumerable<ICreature> cell)
         {
-            return cell.Any(creature => creature is Bomb || creature is BreakableWall || creature is UnbreakableWall
-                                        || creature is Dynamite || creature is Block || creature is SpecialWall);
+            return cell.Any(creature => 
+                creature is Bomb 
+                || creature is BreakableWall
+                || creature is UnbreakableWall
+                || creature is Dynamite
+                || creature is Block
+                || creature is SpecialWall);
         }
 
         public static bool ContainsForceField(this IEnumerable<ICreature> cell)

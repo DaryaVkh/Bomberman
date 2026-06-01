@@ -40,7 +40,6 @@ namespace TestProject
             Game.Map[x, y].OfType<WideSearchMonster>().Should().HaveCount(1);
         }
 
-        // Робот заперт стенами — игрок в отдельном отсеке, недостижим
         [TestCase("#######\r\n###2###\r\n#######\r\n###P###\r\n#######")]
         [TestCase("#######\r\nWWW2WWW\r\n#######\r\n###P###\r\n#######")]
         public void WideSearchMonster_SurroundedByWalls_MonsterStaysInPlace(string testMap)

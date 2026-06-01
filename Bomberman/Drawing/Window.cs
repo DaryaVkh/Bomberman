@@ -96,7 +96,7 @@ namespace Bomberman
                     GameState.ElementSize,
                     GameState.ElementSize);
             e.Graphics.ResetTransform();
-            e.Graphics.DrawString($"Level: {Game.Level} / {Program.AllLevels.Count - 1}", 
+            e.Graphics.DrawString($"Level: {Game.Level} / {Program.Levels.Count - 1}", 
                 new Font("Arial", 16, FontStyle.Bold), Brushes.Black, 0, 0);
             e.Graphics.DrawImage((Bitmap) Image.FromFile(bombIcon.FullName), (float)(GameState.ElementSize * 3.5 + 5), 0);
             e.Graphics.DrawString($"×{Bombs}", new Font("Arial", 16), 
@@ -129,7 +129,7 @@ namespace Bomberman
                 Game.IsRemoteControl = false;
             }
             
-            if (Game.Hint1 || Game.Hint2 || Game.Hint3 || Game.Hint4 || Game.Hint5)
+            if (Game.IsHint)
             {
                 hint.Focus();
                 timer.Stop();
@@ -137,7 +137,7 @@ namespace Bomberman
                 gameState.Pause();
                 Game.KeyPressed = Keys.None;
                 pressedKeys.Clear();
-                hint.SetHintText();
+                hint.SetHint();
                 hint.Show();
             }
 

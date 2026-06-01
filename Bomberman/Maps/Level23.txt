@@ -1,13 +1,13 @@
 ﻿#######################
-#s#DDDDDDDDDDDDDDDDDDD#
+#b#DDDDDDDDDDDDDDDDDDD#
 #W# WWBBBBBBBBBBBBBBBB#
 #P  WW0 1 2 0 0 1 2 2 #
 #W# WWBBBBBBBBBBBBBBBB#
-#b#DDDDDDDDDDDDDDDDDDD#
+#s#DDDDDDDDDDDDDDDDDDD#
 ###WWWWWWWWWWWWWWWWWWW#
-#D                   W#
-# # # # # # # # # # # #
+#                    W#
+# S S S S S S S S S S #
 #    0           0    #
-#W# # # # # # # # # #W#
+#WS S S S S S S S S SW#
 #QW    0   2   0    WW#
 #######################

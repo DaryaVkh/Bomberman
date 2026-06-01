@@ -33,7 +33,7 @@ namespace Bomberman
         /// </summary>
         private void InitializeComponent()
         {
-            Back = new Button();
+            Back = new System.Windows.Forms.Button();
             //
             // Back
             //
@@ -68,6 +68,6 @@ namespace Bomberman
 
         #endregion
 
-        private Button Back;
+        private System.Windows.Forms.Button Back;
     }
 }

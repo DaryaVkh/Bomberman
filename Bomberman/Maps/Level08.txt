@@ -1,13 +1,13 @@
 ﻿#######################
-#P  s           W 0 Ws#
-# # # #W# # #W# # # #W#
-#bW    WW   WW    W   #
-# #W# #W# # #W# # # #W#
-#     WWW       WW    #
-#W# # #W# # # #W#W# # #
-#   W       W0      W0#
-#W# # #W# # # # #W# # #
-#0      WWW   W       #
-#W#W# # #W# # # # # # #
-#bW    2    W     WQW1#
+#P# #b# # # # # # # # #
+#  W W W W W W W WsW W#
+#                b    #
+# # # # # # # # # # # #
+#W W W0W W W W W0W W W#
+# W W W W W W W W W W #
+#                 b   #
+#   W      b W      W #
+#  s      W      W    #
+#             0       #
+#1   W    s   W  1 W Q#
 #######################

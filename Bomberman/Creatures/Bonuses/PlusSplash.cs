@@ -3,6 +3,8 @@
     public class PlusSplash : ICreature
     {
         public string GetImageFileName() => "PlusSplashIcon.png";
+        
+        public int GetDrawingPriority() => 5;
 
         public CreatureCommand Act(int x, int y) => new CreatureCommand();
 
@@ -15,7 +17,5 @@
             }
             return true;
         }
-        
-        public int GetDrawingPriority() => 5;
     }
 }

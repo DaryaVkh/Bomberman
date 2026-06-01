@@ -1,13 +1,13 @@
 ﻿#######################
-#PDDD      D   D   D#C#
-#     DDDD D D   D1D# #
-#DD DDDD D D DDDDDDDD #
-#   D    D  3D      D #
-# DDD D DDD DD DDDD D #
+#PWWW      D   D   D#C#
+#     WWWW D D   D1D# #
+#WW WWWW W D WWWWWWWW #
+#   W    W  3D      D #
+# WWW W WWW WW WWWW W #
 #     D      D    D D #
-#DD DDD D DDDD DD D D #
+#WW WWW W WWWW WW W W #
 #   D       D   D D D #
-# DD  DDDDD D D D D   #
-# DDDDD   D D D DDDDD #
+# WW  WWWW D D D D    #
+# WWWWW   D D D WWWWW #
 #     3 D     D    D  #
 #######################

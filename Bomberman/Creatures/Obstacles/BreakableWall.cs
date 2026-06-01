@@ -5,8 +5,11 @@ namespace Bomberman
 {
     public class BreakableWall : ICreature
     {
-        public string GetImageFileName() => "BreakableWall.png";
         private static readonly string soundFile = Path.Combine(Program.SoundsPath, "wall.wav");
+        
+        public string GetImageFileName() => "BreakableWall.png";
+
+        public int GetDrawingPriority() => 5;
 
         public CreatureCommand Act(int x, int y) => new CreatureCommand();
 
@@ -19,7 +22,5 @@ namespace Bomberman
             
             return conflictedObject is Fire;
         }
-
-        public int GetDrawingPriority() => 5;
     }
 }

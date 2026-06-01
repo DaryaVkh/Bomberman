@@ -34,8 +34,8 @@ namespace Bomberman
         /// </summary>
         private void InitializeComponent()
         {
-            Exit = new Button();
-            InMainMenu = new Button();
+            Exit = new System.Windows.Forms.Button();
+            InMainMenu = new System.Windows.Forms.Button();
             SuspendLayout();
             //
             // InMainMenu
@@ -90,7 +90,7 @@ namespace Bomberman
 
         #endregion
 
-        private Button Exit;
-        private Button InMainMenu;
+        private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button InMainMenu;
     }
 }

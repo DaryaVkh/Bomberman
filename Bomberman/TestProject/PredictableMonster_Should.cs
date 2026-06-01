@@ -10,7 +10,7 @@ namespace TestProject
     [TestFixture]
     public class PredictableMonster_Should
     {
-        private const double MonsterThinkingTime = PredictableMonster.msToGo;
+        private const double MonsterThinkingTime = PredictableMonster.msBeforeGo;
         private const double TimeGap = 50;
         
         private static GameState CreateGameState(string map) => new GameState(map);

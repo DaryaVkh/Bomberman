@@ -57,8 +57,10 @@ namespace Bomberman
                         if (creature == null)
                             continue;
                         var command = creature.Act(x, y);
-                        if (x + command.DeltaX < 0 || x + command.DeltaX >= Game.MapWidth 
-                                                   || y + command.DeltaY < 0 || y + command.DeltaY >= Game.MapHeight)
+                        if (x + command.DeltaX < 0 
+                            || x + command.DeltaX >= Game.MapWidth 
+                            || y + command.DeltaY < 0 
+                            || y + command.DeltaY >= Game.MapHeight)
                             throw new Exception($"The object {creature.GetType()} falls out of the game field");
                         Animations.Add(
                             new CreatureAnimation
@@ -118,8 +120,12 @@ namespace Bomberman
 
             var aliveCreatures = aliveCandidates.Select(c => c.Creature).ToList();
             var aliveCreaturesWithoutDoors = aliveCreatures
-                .Where(c => !(c is ClosedDoor || c is OpenDoor ||
-                              c is Plate || c is PressedPlate || c is RemoteControl || c is Hint)).ToList();
+                .Where(c => !(c is ClosedDoor 
+                              || c is OpenDoor 
+                              || c is Button 
+                              || c is PressedButton 
+                              || c is RemoteControl 
+                              || c is Hint)).ToList();
             if (aliveCreaturesWithoutDoors.Count > 1 && !IsBombAndPlayer(aliveCreaturesWithoutDoors) && !IsFireOrHole(aliveCreaturesWithoutDoors))
                 throw new Exception(
                     $"Creatures {aliveCreatures[0].GetType().Name} and {aliveCreatures[1].GetType().Name} claimed the same map cell");

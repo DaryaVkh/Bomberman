@@ -5,8 +5,11 @@ namespace Bomberman
 {
     public class OpenDoor : ICreature
     {
-        public string GetImageFileName() => "OpenDoor.png";
         private static readonly string soundFile = Path.Combine(Program.SoundsPath, "level.wav");
+
+        public string GetImageFileName() => "OpenDoor.png";
+
+        public int GetDrawingPriority() => 100;
 
         public CreatureCommand Act(int x, int y) => new CreatureCommand();
 
@@ -22,7 +25,5 @@ namespace Bomberman
             }
             return false;
         }
-
-        public int GetDrawingPriority() => 100;
     }
 }

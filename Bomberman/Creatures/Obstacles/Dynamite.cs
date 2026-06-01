@@ -9,6 +9,8 @@ namespace Bomberman
         private static readonly string soundFile = Path.Combine(Program.SoundsPath, "bomb.wav");
 
         public string GetImageFileName() => "Dynamite.png";
+        
+        public int GetDrawingPriority() => 5;
 
         public CreatureCommand Act(int x, int y)
         {
@@ -36,7 +38,5 @@ namespace Bomberman
             
             return false;
         }
-        
-        public int GetDrawingPriority() => 5;
     }
 }

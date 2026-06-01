@@ -8,14 +8,15 @@ namespace Bomberman
     public abstract class Monster : ICreatureWithTimer
     {
         protected Point Position { get; set; }
-        private static readonly string soundFile = Path.Combine(Program.SoundsPath, "monster.wav");
-        
         protected Stopwatch Timer = Stopwatch.StartNew();
         private bool alive = true;
 
+        private static readonly string soundFile = Path.Combine(Program.SoundsPath, "monster.wav");
+
+        public int GetDrawingPriority() => 3;
+
         public abstract string GetImageFileName();
         public abstract CreatureCommand Act(int x, int y);
-        public int GetDrawingPriority() => 3;
         
         public bool DeadInConflict(ICreature conflictedObject)
         {

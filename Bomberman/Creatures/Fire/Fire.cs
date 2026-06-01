@@ -15,6 +15,8 @@ namespace Bomberman
         }
 
         public string GetImageFileName() => "Fire.png";
+
+        public int GetDrawingPriority() => 2;
         
         public CreatureCommand Act(int x, int y)
         {
@@ -35,11 +37,12 @@ namespace Bomberman
 
         public bool DeadInConflict(ICreature conflictedObject)
         {
-            return conflictedObject is Bomb || conflictedObject is Dynamite || conflictedObject is BreakableWall
-                                            || conflictedObject is UnbreakableWall || conflictedObject is Block
-                                            || conflictedObject is SpecialWall;
+            return conflictedObject is Bomb 
+                   || conflictedObject is Dynamite 
+                   || conflictedObject is BreakableWall
+                   || conflictedObject is UnbreakableWall 
+                   || conflictedObject is Block
+                   || conflictedObject is SpecialWall;
         }
-
-        public int GetDrawingPriority() => 2;
     }
 }

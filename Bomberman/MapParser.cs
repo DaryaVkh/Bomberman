@@ -18,18 +18,26 @@ namespace Bomberman
                 for (var x = 0; x < lines[0].Length; x++)
                 {
                     if (lines[y][x] == 'P')
+                    {
                         playersCount++;
-                    if (MonstersAsSymbols.Contains(lines[y][x]))
+                    } 
+                    else if (MonstersAsSymbols.Contains(lines[y][x]))
+                    {
                         Game.MonstersCount++;
-                    if (lines[y][x] == 'X')
-                        Game.PlatesCount++;
-                    if (lines[y][x] == 'R')
+                    } 
+                    else if (lines[y][x] == 'X')
+                    {
+                        Game.ButtonsCount++;
+                    } 
+                    else if (lines[y][x] == 'R')
+                    {
                         Game.RemoteControlInMap = true;
+                    }
                     
                     map[x, y] = lines[y][x] switch
                     {
                         'H' => Helpers.Array<ForceField>(),
-                        'X' => Helpers.Array<Plate>(),
+                        'X' => Helpers.Array<Button>(),
                         'B' => Helpers.Array<Block>(),
                         'P' => Helpers.Array<Player>(),
                         'D' => Helpers.Array<Dynamite>(),
@@ -43,14 +51,16 @@ namespace Bomberman
                         '1' => Helpers.Array<RandomMonster>(),
                         '2' => Helpers.Array<WideSearchMonster>(),
                         '3' => Helpers.Array<DijkstraMonster>(),
-                        'Q' => new ICreature[] {new BreakableWall(), new ClosedDoor()},
                         'b' => Helpers.Array<PlusBomb>(),
                         's' => Helpers.Array<PlusSplash>(),
+                        'Q' => new ICreature[] {new BreakableWall(), new ClosedDoor()},
                         'm' => new ICreature[] {new Hint(1)},
                         'n' => new ICreature[] {new Hint(2)},
                         'x' => new ICreature[] {new Hint(3)},
                         'y' => new ICreature[] {new Hint(4)},
                         'z' => new ICreature[] {new Hint(5)},
+                        'h' => new ICreature[] {new Hint(6)},
+                        'd' => new ICreature[] {new Hint(7)},
                         ' ' => new ICreature[] { },
                          _  => throw new ArgumentException($"wrong character for map {lines[y][x]}")
                     };
@@ -58,7 +68,7 @@ namespace Bomberman
             }
             
             if (playersCount != 1)
-                throw new ArgumentException("There must be exactly 1 player on the map");
+                throw new ArgumentException("There must be 1 player on the map");
 
             return map;
         }

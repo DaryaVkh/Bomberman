@@ -46,7 +46,7 @@ namespace Bomberman
             Hide();
             Game.Level = 0;
             Program.LevelsToPlay.Clear();
-            foreach (var level in Program.AllLevels)
+            foreach (var level in Program.Levels)
             {
                 Program.LevelsToPlay.Enqueue(level);
             }

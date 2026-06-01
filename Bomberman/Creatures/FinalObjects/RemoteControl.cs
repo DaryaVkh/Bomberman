@@ -4,6 +4,8 @@
     {
         public string GetImageFileName() => "RemoteControl.png";
         
+        public int GetDrawingPriority() => 100;
+        
         public CreatureCommand Act(int x, int y) => new CreatureCommand();
 
         public bool DeadInConflict(ICreature conflictedObject)
@@ -17,7 +19,5 @@
             
             return result;
         }
-        
-        public int GetDrawingPriority() => 100;
     }
 }

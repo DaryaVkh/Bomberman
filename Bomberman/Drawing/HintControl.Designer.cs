@@ -33,9 +33,12 @@ namespace Bomberman
         private static string hint3 = "Подрывай динамит, поставив рядом бомбу.\r\nНо будь начеку: его взрыв не имеет ограничений по радиусу!";
         private static string hint4 = "Ставь бомбу рядом с блоком, чтобы сдвинуть его взрывом.\r\nБлок давит всё на своём пути: и врагов, и тебя.";
         private static string hint5 = "Активируй все кнопки блоками, чтобы открыть дверь.\r\nСработавшие кнопки не требуют постоянного удержания.";
+        private static string hint6 = "Силовое поле может очень помочь в сражении.\r\n Ты не можешь через него пройти, но и монстры тоже.\r\n Однако огонь от взрыва бомб силовое поле не останавливает.";
+        private static string hint7 = "Иногда дверь придется поискать, она может быть спрятана за кирпичной стеной.\r\n Будь внимательнее и проверь каждую.";
+
         private void InitializeComponent()
         {
-            OK = new Button();
+            OK = new System.Windows.Forms.Button();
             HintTitle = new Label();
             HintText = new Label();
             //
@@ -81,7 +84,7 @@ namespace Bomberman
             OK.UseVisualStyleBackColor = true;
             OK.FlatAppearance.BorderColor = Color.FromArgb(156, 34, 93);
             OK.BackColor = Color.FromArgb(213, 100, 124); 
-            OK.Click += new System.EventHandler(this.OK_Click);
+            OK.Click += new System.EventHandler(this.OKClick);
             //
             // Congrats
             //
@@ -103,7 +106,7 @@ namespace Bomberman
 
         #endregion
 
-        private Button OK;
+        private System.Windows.Forms.Button OK;
         private Label HintTitle;
         private static Label HintText;
     }

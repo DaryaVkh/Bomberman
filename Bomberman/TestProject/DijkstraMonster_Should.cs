@@ -40,7 +40,6 @@ namespace TestProject
             Game.Map[x, y].OfType<DijkstraMonster>().Should().HaveCount(1);
         }
 
-        // Робот заперт стенами — игрок в отдельном отсеке, недостижим
         [TestCase("#######\r\n###3###\r\n#######\r\n###P###\r\n#######")]
         [TestCase("#######\r\nWWW3WWW\r\n#######\r\n###P###\r\n#######")]
         public void DijkstraMonster_SurroundedByWalls_MonsterStaysInPlace(string testMap)

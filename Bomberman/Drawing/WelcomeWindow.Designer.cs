@@ -51,8 +51,8 @@ namespace Bomberman
                               "преодолев ловушки руководства и сопротивление бывших коллег. " +
                               "Успех навсегда остановит конвейер.");
             storyLine.Enqueue("       Уже сейчас за тобой начата погоня! Скорее убегай от разъярённых монстров в открытую дверь, вооружайся своими логикой и терпением, и вперед проходить испытания!");
-            Next = new Button();
-            Scip = new Button();
+            Next = new System.Windows.Forms.Button();
+            Scip = new System.Windows.Forms.Button();
             Story = new Label();
             SuspendLayout();
             //
@@ -130,8 +130,8 @@ namespace Bomberman
         #endregion
 
         private Queue<string> storyLine;
-        private Button Next;
-        private Button Scip;
+        private System.Windows.Forms.Button Next;
+        private System.Windows.Forms.Button Scip;
         private Label Story;
     }
 }

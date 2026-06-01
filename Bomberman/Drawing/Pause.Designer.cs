@@ -35,11 +35,11 @@ namespace Bomberman
         private void InitializeComponent()
         {
             PauseText = new Label();
-            BackInGame = new Button();
-            Save = new Button();
-            InMainMenu = new Button();
-            Exit = new Button();
-            VolumeButton = new Button();
+            BackInGame = new System.Windows.Forms.Button();
+            Save = new System.Windows.Forms.Button();
+            InMainMenu = new System.Windows.Forms.Button();
+            Exit = new System.Windows.Forms.Button();
+            VolumeButton = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // Pause
@@ -151,11 +151,11 @@ namespace Bomberman
 
         #endregion
 
+        public System.Windows.Forms.Button Save;
         private Label PauseText;
-        private Button InMainMenu;
-        public Button Save;
-        private Button BackInGame;
-        private Button Exit;
-        private Button VolumeButton;
+        private System.Windows.Forms.Button InMainMenu;
+        private System.Windows.Forms.Button BackInGame;
+        private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.Button VolumeButton;
     }
 }

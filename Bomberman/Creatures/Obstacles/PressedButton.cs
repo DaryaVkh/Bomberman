@@ -1,6 +1,6 @@
 ﻿namespace Bomberman
 {
-    public class PressedPlate : ICreature
+    public class PressedButton : ICreature
     {
         public string GetImageFileName() => "ClickedButton.png";
         

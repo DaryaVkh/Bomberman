@@ -90,7 +90,6 @@ namespace Bomberman
             return prev[step.X, step.Y].HasValue ? step : start;
         }
 
-        // Клетки с огнём или рядом с бомбой дороже — робот предпочитает безопасные маршруты
         private static int GetCellCost(Point p)
         {
             var cell = Game.Map[p.X, p.Y];
